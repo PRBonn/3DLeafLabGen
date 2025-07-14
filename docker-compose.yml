@@ -1,0 +1,28 @@
+services:
+  3dlabgen:
+    build:
+      context: .
+      ssh: ["default"]
+    runtime: nvidia
+    shm_size: '6gb'
+    stdin_open: true # docker run -i
+    tty: true        # docker run -t
+    image: "3dlabgen"
+    container_name: "3dlabgen"
+    volumes:
+      # Always mount these
+      - /tmp:/home/user/.cache
+      - /tmp:/tmp
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $SSH_AUTH_SOCK:/ssh-agent
+      # Local mounts
+      - ./src:/packages/3dlabgen
+      - ./logs:/logs
+    environment:
+      - DISPLAY
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              capabilities: [gpu,compute,utility,graphics]
