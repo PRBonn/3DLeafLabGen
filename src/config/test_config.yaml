@@ -1,0 +1,27 @@
+experiment:
+    id: gen_test
+    seed: 1324
+
+##Data
+data:
+    source:
+        name: 'bbc'
+        opts:
+            train:
+                root: "/packages/3dlabgen/data/"
+                batch_size: 6
+                n_gpus: 1
+                workers: 0
+            val:
+                root:  "/packages/3dlabgen/data/"
+                n_gpus: 1
+                workers: 0
+                batch_size: 6
+    target:
+        name: 'synthetic'
+        opts:
+              root: "/packages/3dlabgen/experiments/generated/0"
+              batch_size: 6
+              n_gpus: 1
+              workers: 0
+

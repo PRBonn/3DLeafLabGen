@@ -1,0 +1,6 @@
+src/**/__pycache__/
+src/**/*.pth
+src/**/*.ckpt
+src/experiments/*
+/src/data/
+/logs

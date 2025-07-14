@@ -1,0 +1,50 @@
+experiment:
+    id: all
+    seed: 1324
+
+##Data
+data:
+    name: 'bbc'
+    opts:
+        train:
+                root: "/packages/3dlabgen/data/"
+                batch_size: 6
+                n_gpus: 1
+                workers: 0
+        val:
+                root:  "/packages/3dlabgen/data/"
+                n_gpus: 1
+                workers: 0 
+                batch_size: 6
+
+##Training
+train:
+    n_gpus: 1
+    workers: 0
+    max_epoch: 100
+    batch_size: 6
+    overfit: False
+
+##Network
+model:
+    name: 'kpunet'
+    opts:
+        out_dim: 3 
+        start_voxel_size: 0.001
+        init_voxel_size: 0.1
+        end_voxel_size: 1
+        in_dim: 3
+        hidden_feature_dim: 128
+        num_subsamplings: 3
+        num_stem_layers: 5
+        conv_radius_scale: 1.5
+        do_deconvolution: False
+        random_sample: False
+        do_interpolation: True
+        log_voxel_scaling: True
+        aggregation_method: "conv"
+        skel_size: 31
+        data: 'bbc' # must be the same name as data-name
+        knn: 3 # must be lower tha batch size
+    lr: 0.01
+
